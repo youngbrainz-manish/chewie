@@ -260,7 +260,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
               if (!chewieController.isLive)
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 20, left: 20),
+                    padding: const EdgeInsets.only(right: 24, left: 20),
                     child: Row(children: [_buildProgressBar()]),
                   ),
                 ),
@@ -610,8 +610,8 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
             ChewieProgressColors(
               playedColor: Colors.white,
               handleColor: Colors.white,
-              bufferedColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.8),
-              backgroundColor: Theme.of(context).disabledColor.withValues(alpha: .8),
+              bufferedColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
+              backgroundColor: Theme.of(context).disabledColor.withValues(alpha: .5),
             ),
         draggableProgressBar: chewieController.draggableProgressBar,
       ),
