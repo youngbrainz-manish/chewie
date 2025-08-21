@@ -235,7 +235,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
             children: [
               Flexible(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: EdgeInsets.only(left: controller.value.isPlaying ? 12 : 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
