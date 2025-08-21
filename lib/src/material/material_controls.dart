@@ -244,7 +244,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
                         child: Icon(
                           controller.value.isPlaying ? Icons.pause : Icons.play_arrow_rounded,
                           color: Colors.white,
-                          size: 28,
+                          size: controller.value.isPlaying ? 27 : 32,
                         ),
                       ),
                       SizedBox(width: 4),
