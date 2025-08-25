@@ -95,11 +95,11 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
                   children: <Widget>[
                     // const Spacer(),
                     _buildTopBar(backgroundColor, iconColor, barHeight, buttonPadding),
-                    if (_subtitleOn)
-                      Transform.translate(
-                        offset: Offset(0.0, notifier.hideStuff ? barHeight * 0.8 : 0.0),
-                        child: _buildSubtitles(chewieController.subtitle!),
-                      ),
+                    // if (_subtitleOn)
+                    //   Transform.translate(
+                    //     offset: Offset(0.0, notifier.hideStuff ? barHeight * 0.8 : 0.0),
+                    //     child: _buildSubtitles(chewieController.subtitle!),
+                    //   ),
                     _buildBottomBar(backgroundColor, iconColor, barHeight),
                   ],
                 ),
@@ -253,7 +253,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
                 ? Icons.fullscreen_exit_sharp
                 : Icons.fullscreen,
             color: iconColor,
-            size: 16,
+            size: 20,
           ),
         ),
       ),
@@ -317,7 +317,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
         child: Container(
           height: barHeight,
           padding: EdgeInsets.only(left: buttonPadding, right: buttonPadding),
-          child: Icon(_latestValue.volume > 0 ? Icons.volume_up : Icons.volume_off, color: iconColor, size: 16),
+          child: Icon(_latestValue.volume > 0 ? Icons.volume_up : Icons.volume_off, color: iconColor, size: 20),
         ),
       ),
     );
@@ -330,7 +330,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
         height: barHeight,
         color: Colors.transparent,
         padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-        child: AnimatedPlayPause(color: Colors.white, playing: controller.value.isPlaying),
+        child: AnimatedPlayPause(color: Colors.white, playing: controller.value.isPlaying, size: 20),
       ),
     );
   }
@@ -340,7 +340,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
 
     return Padding(
       padding: const EdgeInsets.only(right: 12.0),
-      child: Text(formatDuration(position), style: TextStyle(color: Colors.white, fontSize: 12.0)),
+      child: Text(formatDuration(position), style: TextStyle(color: Colors.white, fontSize: 15.0)),
     );
   }
 
