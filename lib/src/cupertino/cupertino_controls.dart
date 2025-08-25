@@ -330,7 +330,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
         height: barHeight,
         color: Colors.transparent,
         padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-        child: AnimatedPlayPause(color: widget.iconColor, playing: controller.value.isPlaying),
+        child: AnimatedPlayPause(color: Colors.white, playing: controller.value.isPlaying),
       ),
     );
   }
@@ -340,7 +340,7 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
 
     return Padding(
       padding: const EdgeInsets.only(right: 12.0),
-      child: Text(formatDuration(position), style: TextStyle(color: iconColor, fontSize: 12.0)),
+      child: Text(formatDuration(position), style: TextStyle(color: Colors.white, fontSize: 12.0)),
     );
   }
 
@@ -457,16 +457,16 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
               : Row(
                 children: [
                   _buildPlayPause(controller, iconColor, barHeight),
-                  _buildLive(iconColor),
+                  // _buildLive(iconColor),
                   _buildPosition(iconColor),
                 ],
               ),
           const Spacer(),
           if (chewieController.allowMuting)
-            _buildMuteButton(controller, backgroundColor, iconColor, barHeight, buttonPadding),
+            _buildMuteButton(controller, backgroundColor, Colors.white, barHeight, buttonPadding),
           SizedBox(width: 8),
           if (chewieController.allowFullScreen)
-            _buildExpandButton(backgroundColor, iconColor, barHeight, buttonPadding),
+            _buildExpandButton(backgroundColor, Colors.white, barHeight, buttonPadding),
         ],
       ),
     );
