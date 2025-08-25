@@ -42,16 +42,9 @@ class _ChewieDemoState extends State<ChewieDemo> {
   ];
 
   Future<void> initializePlayer() async {
-    _videoPlayerController1 = VideoPlayerController.networkUrl(
-      Uri.parse(srcs[currPlayIndex]),
-    );
-    _videoPlayerController2 = VideoPlayerController.networkUrl(
-      Uri.parse(srcs[currPlayIndex]),
-    );
-    await Future.wait([
-      _videoPlayerController1.initialize(),
-      _videoPlayerController2.initialize(),
-    ]);
+    _videoPlayerController1 = VideoPlayerController.networkUrl(Uri.parse(srcs[currPlayIndex]));
+    _videoPlayerController2 = VideoPlayerController.networkUrl(Uri.parse(srcs[currPlayIndex]));
+    await Future.wait([_videoPlayerController1.initialize(), _videoPlayerController2.initialize()]);
     _createChewieController();
     setState(() {});
   }
@@ -79,18 +72,9 @@ class _ChewieDemoState extends State<ChewieDemo> {
         end: const Duration(seconds: 10),
         text: const TextSpan(
           children: [
-            TextSpan(
-              text: 'Hello',
-              style: TextStyle(color: Colors.red, fontSize: 22),
-            ),
-            TextSpan(
-              text: ' from ',
-              style: TextStyle(color: Colors.green, fontSize: 20),
-            ),
-            TextSpan(
-              text: 'subtitles',
-              style: TextStyle(color: Colors.blue, fontSize: 18),
-            ),
+            TextSpan(text: 'Hello', style: TextStyle(color: Colors.red, fontSize: 22)),
+            TextSpan(text: ' from ', style: TextStyle(color: Colors.green, fontSize: 20)),
+            TextSpan(text: 'subtitles', style: TextStyle(color: Colors.blue, fontSize: 18)),
           ],
         ),
       ),
@@ -111,29 +95,23 @@ class _ChewieDemoState extends State<ChewieDemo> {
       autoPlay: true,
       zoomAndPan: true,
       looping: true,
-      progressIndicatorDelay:
-          bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
+      progressIndicatorDelay: bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
 
       additionalOptions: (context) {
         return <OptionItem>[
-          OptionItem(
-            onTap: (context) => toggleVideo(),
-            iconData: Icons.live_tv_sharp,
-            title: 'Toggle Video Src',
-          ),
+          OptionItem(onTap: (context) => toggleVideo(), iconData: Icons.live_tv_sharp, title: 'Toggle Video Src'),
         ];
       },
       subtitle: Subtitles(subtitles),
       showSubtitles: true,
-      subtitleBuilder: (context, dynamic subtitle) => Container(
-        padding: const EdgeInsets.all(10.0),
-        child: subtitle is InlineSpan
-            ? RichText(text: subtitle)
-            : Text(
-                subtitle.toString(),
-                style: const TextStyle(color: Colors.black),
-              ),
-      ),
+      subtitleBuilder:
+          (context, dynamic subtitle) => Container(
+            padding: const EdgeInsets.all(10.0),
+            child:
+                subtitle is InlineSpan
+                    ? RichText(text: subtitle)
+                    : Text(subtitle.toString(), style: const TextStyle(color: Colors.black)),
+          ),
 
       hideControlsTimer: const Duration(seconds: 1),
 
@@ -168,27 +146,20 @@ class _ChewieDemoState extends State<ChewieDemo> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: widget.title,
-      theme: AppTheme.light.copyWith(
-        platform: _platform ?? Theme.of(context).platform,
-      ),
+      theme: AppTheme.light.copyWith(platform: _platform ?? Theme.of(context).platform),
       home: Scaffold(
         appBar: AppBar(title: Text(widget.title)),
         body: Column(
           children: <Widget>[
             Expanded(
               child: Center(
-                child: _chewieController != null &&
-                        _chewieController!
-                            .videoPlayerController.value.isInitialized
-                    ? Chewie(controller: _chewieController!)
-                    : const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircularProgressIndicator(),
-                          SizedBox(height: 20),
-                          Text('Loading'),
-                        ],
-                      ),
+                child:
+                    _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
+                        ? Chewie(controller: _chewieController!)
+                        : const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [CircularProgressIndicator(), SizedBox(height: 20), Text('Loading')],
+                        ),
               ),
             ),
             TextButton(
@@ -208,10 +179,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
                         _createChewieController();
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Landscape Video"),
-                    ),
+                    child: const Padding(padding: EdgeInsets.symmetric(vertical: 16.0), child: Text("Landscape Video")),
                   ),
                 ),
                 Expanded(
@@ -248,10 +216,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
                         );
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Portrait Video"),
-                    ),
+                    child: const Padding(padding: EdgeInsets.symmetric(vertical: 16.0), child: Text("Portrait Video")),
                   ),
                 ),
               ],
@@ -278,10 +243,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
                         _platform = TargetPlatform.iOS;
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("iOS controls"),
-                    ),
+                    child: const Padding(padding: EdgeInsets.symmetric(vertical: 16.0), child: Text("iOS controls")),
                   ),
                 ),
               ],
@@ -307,8 +269,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
               ListTile(
                 title: const Text("Delay"),
                 subtitle: DelaySlider(
-                  delay:
-                      _chewieController?.progressIndicatorDelay?.inMilliseconds,
+                  delay: _chewieController?.progressIndicatorDelay?.inMilliseconds,
                   onSave: (delay) async {
                     if (delay != null) {
                       bufferDelay = delay == 0 ? null : delay;
@@ -347,9 +308,7 @@ class _DelaySliderState extends State<DelaySlider> {
   Widget build(BuildContext context) {
     const int max = 1000;
     return ListTile(
-      title: Text(
-        "Progress indicator delay ${delay != null ? "${delay.toString()} MS" : ""}",
-      ),
+      title: Text("Progress indicator delay ${delay != null ? "${delay.toString()} MS" : ""}"),
       subtitle: Slider(
         value: delay != null ? (delay! / max) : 0,
         onChanged: (value) async {
@@ -361,14 +320,15 @@ class _DelaySliderState extends State<DelaySlider> {
       ),
       trailing: IconButton(
         icon: const Icon(Icons.save),
-        onPressed: saved
-            ? null
-            : () {
-                widget.onSave(delay);
-                setState(() {
-                  saved = true;
-                });
-              },
+        onPressed:
+            saved
+                ? null
+                : () {
+                  widget.onSave(delay);
+                  setState(() {
+                    saved = true;
+                  });
+                },
       ),
     );
   }
