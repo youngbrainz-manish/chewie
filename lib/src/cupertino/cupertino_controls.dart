@@ -517,14 +517,13 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
   Widget _buildProgressBar() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(right: 12.0),
+        padding: const EdgeInsets.only(right: 24, left: 16),
         child: CupertinoVideoProgressBar(
           controller,
           onDragStart: () {
             setState(() {
               _dragging = true;
             });
-
             _hideTimer?.cancel();
           },
           onDragUpdate: () {
@@ -534,7 +533,6 @@ class _CupertinoControlsState extends State<CupertinoControls> with SingleTicker
             setState(() {
               _dragging = false;
             });
-
             _startHideTimer();
           },
           colors:
